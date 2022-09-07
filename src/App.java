@@ -18,5 +18,6 @@ public class App {
         }
         int numberOfLines = lc.count();
         System.out.println("Number of non-empty lines: " + numberOfLines + ".");
+        System.out.println("Number of empty lines: " + lc.getNumberOfEmptyLines() + ".");
     }
 }

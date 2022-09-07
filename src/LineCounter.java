@@ -6,10 +6,13 @@ public class LineCounter {
   private String fileName;
   private Scanner scanner;
   private int numberOfLines;
+  private int numberOfEmptyLines;
   private StringBuilder fileContent;
+
   public LineCounter (String fileName) throws FileNotFoundException {
     this.fileName = fileName;
     this.numberOfLines = 0;
+    this.numberOfEmptyLines = 0;
     this.open();
   }
 
@@ -26,14 +29,23 @@ public class LineCounter {
 
   public int count () {
     while (scanner.hasNextLine()) {
-      if (scanner.nextLine().length() > 0) {
-        this.numberOfLines++;
+      String scannedLine = scanner.nextLine();
+      if (scannedLine.length() > 0) {
+        if(scannedLine.isBlank()) {
+          this.numberOfEmptyLines++;
+        } else {
+          this.numberOfLines++;
+        }
       }
     }
     return this.numberOfLines;
   }
 
-  public int countIfStatements (String fileString) {
+  public int getNumberOfEmptyLines () {
+    return this.numberOfEmptyLines;
+  }
+
+  /* public int countIfStatements (String fileString) {
     int numberOfIfStatements = 0;
     Scanner stringScanner = new Scanner(fileString);
     while (stringScanner.hasNextLine()) {
@@ -43,6 +55,9 @@ public class LineCounter {
       }
     }
     stringScanner.close();
+    
     return numberOfIfStatements;
-  }
+  } */
+
+  
 }
