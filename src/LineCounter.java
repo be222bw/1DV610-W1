@@ -6,6 +6,7 @@ public class LineCounter {
   private String fileName;
   private Scanner scanner;
   private int numberOfLines;
+  private StringBuilder fileContent;
   public LineCounter (String fileName) throws FileNotFoundException {
     this.fileName = fileName;
     this.numberOfLines = 0;
@@ -14,6 +15,13 @@ public class LineCounter {
 
   public void open () throws FileNotFoundException {
       scanner = new Scanner(new File(this.fileName));
+  }
+
+  public String readFile () {
+    while (scanner.hasNextLine()) {
+      fileContent.append(scanner.nextLine());
+    }
+    return fileContent.toString();
   }
 
   public int count () {
@@ -25,13 +33,16 @@ public class LineCounter {
     return this.numberOfLines;
   }
 
-  public int countIfStatements (String line) {
+  public int countIfStatements (String fileString) {
     int numberOfIfStatements = 0;
-    for (int i = 0; i < line.length(); i++) {
+    Scanner stringScanner = new Scanner(fileString);
+    while (stringScanner.hasNextLine()) {
+      String line = stringScanner.nextLine();
       if (line.contains("if")) {
         numberOfIfStatements++;
       }
     }
+    stringScanner.close();
     return numberOfIfStatements;
   }
 }
