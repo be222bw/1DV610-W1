@@ -18,9 +18,20 @@ public class LineCounter {
 
   public int count () {
     while (scanner.hasNextLine()) {
-      this.numberOfLines++;
-      scanner.nextLine();
+      if (scanner.nextLine().length() > 0) {
+        this.numberOfLines++;
+      }
     }
     return this.numberOfLines;
+  }
+
+  public int countIfStatements (String line) {
+    int numberOfIfStatements = 0;
+    for (int i = 0; i < line.length(); i++) {
+      if (line.contains("if")) {
+        numberOfIfStatements++;
+      }
+    }
+    return numberOfIfStatements;
   }
 }

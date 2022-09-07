@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.io.File;
 import java.io.FileNotFoundException;
 
 
@@ -18,6 +17,6 @@ public class App {
             e.printStackTrace();
         }
         int numberOfLines = lc.count();
-        System.out.println("Number of lines: " + numberOfLines + ".");
+        System.out.println("Number of non-empty lines: " + numberOfLines + ".");
     }
 }

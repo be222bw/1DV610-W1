@@ -3,6 +3,10 @@ Test1
 Test1
 Test1
 Test1
+"if if if"
+if (x == 0) {
+
+}
 Test1
 Test1
 Test1
