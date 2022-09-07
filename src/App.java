@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 
 public class App {
@@ -9,20 +10,14 @@ public class App {
         System.out.print("Please enter file name: ");
         String fileName = scanner.nextLine();
         scanner.close();
-        System.out.println(fileName);
-        File file = new File(fileName);
-        Scanner fileReader = null;
+        LineCounter lc = null;
         try {
-            fileReader = new Scanner(file, "utf-8");
-        } catch (Exception e) {
-            System.err.println(e.toString());
-          }
-          int numberOfLines = 0;
-        while (fileReader.hasNextLine()) {
-            fileReader.nextLine();
-            numberOfLines++;
+            lc = new LineCounter(fileName);
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getLocalizedMessage());
+            e.printStackTrace();
         }
-        System.out.println("Number of lines in document " + fileName + " is " + numberOfLines);
-        fileReader.close();
+        int numberOfLines = lc.count();
+        System.out.println("Number of lines: " + numberOfLines + ".");
     }
 }
